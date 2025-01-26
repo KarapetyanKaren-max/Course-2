@@ -20,8 +20,8 @@ public class ProductBasket {
                 }
             }
         }
-        public int priceBasket() {
-            int sum = 0;
+        public double priceBasket() {
+            double sum = 0;
             if (products[0] == null) {
                 System.out.println("Корзина пуста");
             } else {
