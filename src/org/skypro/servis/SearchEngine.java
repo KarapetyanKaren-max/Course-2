@@ -54,7 +54,6 @@ public class SearchEngine {
             if (result != null) {
                 System.out.println(result.getSearchTerm());
             }
-
         }
     }
 }
