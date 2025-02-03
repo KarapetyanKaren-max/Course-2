@@ -1,6 +1,9 @@
 package org.skypro;
 
-    public class App {
+import org.skypro.model.*;
+import org.skypro.servis.SearchEngine;
+
+public class App {
         public static void main(String[] args) {
 
             ProductBasket basket = new ProductBasket();
@@ -13,6 +16,5 @@ package org.skypro;
             System.out.println("Добавить продукт в корзину");
             basket.printBasket();
             System.out.println("Стоимость корзины: " + basket.priceBasket());
-
         }
     }

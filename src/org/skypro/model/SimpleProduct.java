@@ -1,8 +1,8 @@
-package org.skypro;
+package org.skypro.model;
 
 import java.util.Objects;
 
-public class SimpleProduct extends Product{
+public class SimpleProduct extends Product {
     private double price;
     public SimpleProduct(double price, String name){
         super(name);
@@ -34,6 +34,11 @@ public class SimpleProduct extends Product{
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), price);
+    }
+
+    @Override
+    public String getSearchTerm() {
+        return "";
     }
 }
 

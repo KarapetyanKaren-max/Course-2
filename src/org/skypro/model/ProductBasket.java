@@ -1,4 +1,4 @@
-package org.skypro;
+package org.skypro.model;
 
 import java.util.Arrays;
 import java.util.Objects;

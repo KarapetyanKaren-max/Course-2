@@ -1,6 +1,6 @@
-package org.skypro;
+package org.skypro.model;
 
-public class FixPriceProduct extends Product{
+public class FixPriceProduct extends Product {
 private static double price = 50;
     public FixPriceProduct(String name) {
         super(name);
@@ -28,5 +28,10 @@ private static double price = 50;
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+
+    @Override
+    public String getSearchTerm() {
+        return "";
     }
 }

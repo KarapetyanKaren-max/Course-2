@@ -1,8 +1,8 @@
-package org.skypro;
+package org.skypro.model;
 
 import java.util.Objects;
 
-public abstract class Product {
+public abstract class  Product implements Searchable {
 
     protected String name;
 
@@ -11,6 +11,17 @@ public abstract class Product {
 
         this.name = name;
     }
+
+    @Override
+    public String searchTerm() {
+        return name;
+    }
+
+    @Override
+    public String getType() {
+        return "PRODUCT";
+    }
+
     public String getName() {
         return name;
     }

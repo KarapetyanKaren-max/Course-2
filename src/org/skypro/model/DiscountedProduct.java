@@ -1,4 +1,4 @@
-package org.skypro;
+package org.skypro.model;
 
 import java.util.Objects;
 
@@ -44,6 +44,11 @@ public class DiscountedProduct extends Product {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), basePrise, discount);
+    }
+
+    @Override
+    public String getSearchTerm() {
+        return "";
     }
 }
 
