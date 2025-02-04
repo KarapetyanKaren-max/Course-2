@@ -1,46 +1,31 @@
 package org.skypro.model;
 
+import java.util.Objects;
+
 public class Article implements Searchable {
-    // Немодифицируемые поля
     private final String title;
     private final String content;
 
-    // Конструктор для инициализации полей
     public Article(String title, String content) {
         this.title = title;
         this.content = content;
     }
-
-    // Геттеры для получения значений полей
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
+    @Override
     public String getSearchTerm() {
-        return title.toLowerCase();
-    }
-    // Переопределение метода toString
-    @Override
-    public String toString() {
-        return title + "\n" + content;
+        return title + " " + content;
     }
 
     @Override
-    public String searchTerm() {
-        return toString();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Article article = (Article) o;
+        return Objects.equals(title, article.title) && Objects.equals(content, article.content);
     }
 
     @Override
-    public String getType() {
-        return "ARTICLE";
+    public int hashCode() {
+        return Objects.hash(title, content);
     }
+}
 
-    @Override
-    public String getName() {
-        return title;
-    }
-
-    }

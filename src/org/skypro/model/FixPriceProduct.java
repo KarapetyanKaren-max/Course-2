@@ -1,37 +1,26 @@
 package org.skypro.model;
 
+import org.skypro.servi.Product;
+
 public class FixPriceProduct extends Product {
-private static double price = 50;
+
+    private static final double DEFAULT_PRICE = 50.0;
+    private double price;
+
+
     public FixPriceProduct(String name) {
         super(name);
+        this.price = DEFAULT_PRICE;
     }
+
+    public FixPriceProduct(String name, double price) {
+        super(name);
+        this.price = price;
+    }
+
 
     @Override
     public double getPrice() {
         return price;
-    }
-
-    @Override
-    public String toString() {
-        return "FixPriceProduct{" +
-                " name = '" + name + '\'' +
-                ", price = " + price +
-                '}';
-
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public String getSearchTerm() {
-        return "";
     }
 }

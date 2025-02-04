@@ -1,5 +1,7 @@
 package org.skypro.model;
 
+import org.skypro.servi.Product;
+
 import java.util.Arrays;
 import java.util.Objects;
 
