@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class SearchEngine {
     private List<Searchable> items;
-    private static SearchEngine engine;
+
 
 
     private SearchEngine() {
@@ -18,6 +18,7 @@ public class SearchEngine {
 
 
     public static SearchEngine getInstance() {
+        SearchEngine engine = null;
         if (engine == null) {
             engine = new SearchEngine();
         }
@@ -41,7 +42,7 @@ public class SearchEngine {
     }
 
 
-    private static void printSearchResults(List<Searchable> results) {
+    public static void printSearchResults(List<Searchable> results) {
         if (results.isEmpty()) {
             System.out.println("Ничего не найдено.");
         } else {
@@ -50,29 +51,6 @@ public class SearchEngine {
             }
         }
     }
-
-    public static void main(String[] args) {
-
-        SearchEngine engine = SearchEngine.getInstance();
-
-
-        engine.add(new Article("Самое вкусное молоко", "Зачем нужен Хрен."));
-        engine.add(new Article("Дохлая рыба", "Что купить: масло или торт."));
-
-
-        System.out.println("Результаты поиска для 'молоко':");
-        List<Searchable> results1 = engine.search("молоко");
-        printSearchResults(results1);
-
-        System.out.println("Результаты поиска для 'рыба':");
-        List<Searchable> results2 = engine.search("рыба");
-        printSearchResults(results2);
-
-        System.out.println("Результаты поиска для 'Самое вкусное молоко':");
-        List<Searchable> results3 = engine.search("Самое вкусное молоко");
-        printSearchResults(results3);
-    }
-
     @Override
     public String toString() {
         return "SearchEngine{" +
