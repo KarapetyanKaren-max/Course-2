@@ -6,9 +6,17 @@ import java.util.Objects;
 
 public class SimpleProduct extends Product {
     private double price;
-    public SimpleProduct(double price, String name){
+
+    public SimpleProduct(double price, String name) {
         super(name);
+        validatePrice(price); // Validate price in the constructor
         this.price = price;
+    }
+
+    private void validatePrice(double price) {
+        if (price <= 0) {
+            throw new IllegalArgumentException("Цена продукта должна быть строго больше 0");
+        }
     }
 
     @Override
@@ -19,7 +27,8 @@ public class SimpleProduct extends Product {
     @Override
     public String toString() {
         return "SimpleProduct{" +
-                "price=" + price +
+                "name='" + getName() + '\'' + // Include product name for clarity
+                ", price=" + price +
                 '}';
     }
 
