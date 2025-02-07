@@ -1,6 +1,5 @@
 package org.skypro.servis;
 
-import org.skypro.model.Article;
 import org.skypro.model.Searchable;
 
 import java.util.ArrayList;
@@ -10,37 +9,32 @@ import java.util.Objects;
 public class SearchEngine {
     private List<Searchable> items;
 
-
-
     private SearchEngine() {
         items = new ArrayList<>();
     }
 
-
-    public static SearchEngine getInstance() {
-        SearchEngine engine = null;
-        if (engine == null) {
-            engine = new SearchEngine();
-        }
-        return engine;
+    private static class LazyHolder {
+        private static final SearchEngine INSTANCE = new SearchEngine();
     }
 
+    public static SearchEngine getInstance() {
+        return LazyHolder.INSTANCE;
+    }
 
     public void add(Searchable item) {
         items.add(item);
     }
 
-
     public List<Searchable> search(String searchTerm) {
         List<Searchable> results = new ArrayList<>();
         for (Searchable item : items) {
-            if (item.getSearchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
+            if (item != null && item.getSearchTerm() != null &&
+                    item.getSearchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
                 results.add(item);
             }
         }
         return results;
     }
-
 
     public static void printSearchResults(List<Searchable> results) {
         if (results.isEmpty()) {
@@ -51,6 +45,7 @@ public class SearchEngine {
             }
         }
     }
+
     @Override
     public String toString() {
         return "SearchEngine{" +
