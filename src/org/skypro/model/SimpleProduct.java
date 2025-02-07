@@ -1,8 +1,10 @@
-package org.skypro;
+package org.skypro.model;
+
+import org.skypro.servi.Product;
 
 import java.util.Objects;
 
-public class SimpleProduct extends Product{
+public class SimpleProduct extends Product {
     private double price;
     public SimpleProduct(double price, String name){
         super(name);
@@ -17,8 +19,7 @@ public class SimpleProduct extends Product{
     @Override
     public String toString() {
         return "SimpleProduct{" +
-                "price = " + price +
-                " name = " + name +
+                "price=" + price +
                 '}';
     }
 
@@ -28,7 +29,7 @@ public class SimpleProduct extends Product{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         SimpleProduct that = (SimpleProduct) o;
-        return price == that.price;
+        return Double.compare(price, that.price) == 0;
     }
 
     @Override
@@ -36,4 +37,6 @@ public class SimpleProduct extends Product{
         return Objects.hash(super.hashCode(), price);
     }
 }
+
+
 

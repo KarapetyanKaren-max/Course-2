@@ -1,4 +1,6 @@
-package org.skypro;
+package org.skypro.model;
+
+import org.skypro.servi.Product;
 
 import java.util.Objects;
 
@@ -26,9 +28,9 @@ public class DiscountedProduct extends Product {
 
     @Override
     public String toString() {
-        return "DiscountedProduct{" + name +
-                " Prise = " + basePrise +
-                ", discount = " + discount +
+        return "DiscountedProduct{" +
+                "basePrise=" + basePrise +
+                ", discount=" + discount +
                 '}';
     }
 
@@ -46,6 +48,7 @@ public class DiscountedProduct extends Product {
         return Objects.hash(super.hashCode(), basePrise, discount);
     }
 }
+
 
 
 
