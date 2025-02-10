@@ -46,6 +46,38 @@ public class SearchEngine {
         }
     }
 
+    public Searchable findBestMatch(String searchTerm) throws BestResultNotFound {
+        Searchable bestMatch = null;
+        int maxCount = 0;
+
+        for (Searchable item : items) {
+            if (item != null && item.getSearchTerm() != null) {
+                int count = countOccurrences(item.getSearchTerm().toLowerCase(), searchTerm.toLowerCase());
+                if (count > maxCount) {
+                    maxCount = count;
+                    bestMatch = item;
+                }
+            }
+        }
+
+        if (bestMatch == null) {
+            throw new BestResultNotFound(searchTerm);
+        }
+
+        return bestMatch;
+    }
+    private int countOccurrences(String str, String substring) {
+        int count = 0;
+        int index = 0;
+
+        while ((index = str.indexOf(substring, index)) != -1) {
+            count++;
+            index += substring.length();
+        }
+
+        return count;
+    }
+
     @Override
     public String toString() {
         return "SearchEngine{" +

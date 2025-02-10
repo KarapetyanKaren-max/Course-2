@@ -9,7 +9,14 @@ public abstract class Product implements Searchable {
     private String name;
 
     public Product(String name) {
+        validateName(name);
         this.name = name;
+    }
+
+    private void validateName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Название продукта не может быть пустым или состоять только из пробелов");
+        }
     }
 
     public String getName() {
@@ -17,6 +24,7 @@ public abstract class Product implements Searchable {
     }
 
     public void setName(String name) {
+        validateName(name); // Validate name when setting it
         this.name = name;
     }
 
