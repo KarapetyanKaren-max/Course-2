@@ -1,4 +1,4 @@
-package org.skypro.servi.exception;
+package org.skypro.exception;
 
 public class BestResultNotFound extends Exception {
     public BestResultNotFound(String searchTerm) {

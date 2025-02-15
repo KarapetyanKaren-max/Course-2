@@ -1,4 +1,4 @@
-package org.skypro.servi;
+package org.skypro.model.product;
 
 import org.skypro.model.Searchable;
 
@@ -24,7 +24,7 @@ public abstract class Product implements Searchable {
     }
 
     public void setName(String name) {
-        validateName(name); // Validate name when setting it
+        validateName(name);
         this.name = name;
     }
 
