@@ -18,14 +18,14 @@ public class App {
         ProductBasket basket = new ProductBasket();
         SearchEngine searchEngine = SearchEngine.getInstance();
 
-        // Добавление продуктов в корзину
+
         basket.addProduct(new DiscountedProduct(50, "Молоко", 230));
         basket.addProduct(new SimpleProduct(1, "Хрен"));
         basket.addProduct(new SimpleProduct(120, "Масло"));
         basket.addProduct(new SimpleProduct(650, "Торт"));
         basket.addProduct(new SimpleProduct(150, "Молоко"));
 
-        // Удаление продукта
+
         List<Product> removedProducts = basket.removeProductByName("Молоко");
         System.out.println("Удаленные продукты:");
         for (Product product : removedProducts) {
@@ -35,7 +35,6 @@ public class App {
         System.out.println("Корзина после удаления:");
         basket.printBasket();
 
-        // Попытка удалить несуществующий продукт
         removedProducts = basket.removeProductByName("Неизвестный продукт");
         if (removedProducts.isEmpty()) {
             System.out.println("Список пуст");
@@ -44,7 +43,6 @@ public class App {
         System.out.println("Корзина после попытки удаления несуществующего продукта:");
         basket.printBasket();
 
-        // Поиск
         String searchTerm = "Молоко";
         List<Searchable> searchResults = searchEngine.search(searchTerm);
         System.out.println("Результаты поиска для: " + searchTerm);
