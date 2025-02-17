@@ -1,13 +1,15 @@
 package org.skypro.servis;
 
+import org.skypro.exception.BestResultNotFound;
 import org.skypro.model.Searchable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 public class SearchEngine {
-    private List<Searchable> items;
+    private final List<Searchable> items;
 
     private SearchEngine() {
         items = new ArrayList<>();
@@ -66,6 +68,7 @@ public class SearchEngine {
 
         return bestMatch;
     }
+
     private int countOccurrences(String str, String substring) {
         int count = 0;
         int index = 0;

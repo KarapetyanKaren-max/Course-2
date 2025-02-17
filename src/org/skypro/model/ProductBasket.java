@@ -1,63 +1,58 @@
 package org.skypro.model;
 
-import org.skypro.servi.Product;
+import org.skypro.model.product.Product;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 
 public class ProductBasket {
-        private Product[] products = new Product[5];
+    private final List<Product> products;
 
-        // Этот класс содержит в себе одну корзину с продуктами, которые купил один пользователь
-        // Вам нужно реализовать следующие публичные методы
-        public void addProduct(Product product) {
-            for (int number = 0; number < products.length; number++) {
-                if (products[number] == null) {
-                    products[number] = product;
-                    System.out.println("Продукт в корзину добавлен");
-                    break;
-                }
-                if (number == products.length - 1) {
-                    System.out.println("корзина заполнена");
-                }
+    public ProductBasket() {
+        products = new ArrayList<>();
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+        if (product == null || product.getPrice() <= 0) {
+            throw new IllegalArgumentException("Продукт не может быть пустым или иметь отрицательную цену.");
+        }
+        products.add(product);
+        System.out.println("Продукт в корзину добавлен");
+    }
+    public List<Product> removeProductByName(String name) {
+        List<Product> removedProducts = new ArrayList<>();
+        Iterator<Product> iterator = products.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getName().equals(name)) {
+                removedProducts.add(product);
+                iterator.remove();
             }
         }
-        public double priceBasket() {
-            double sum = 0;
-            if (products[0] == null) {
-                System.out.println("Корзина пуста");
-            } else {
-                for (Product variable : products) {
-                    if (variable != null) {
-                        sum = sum+variable.getPrice();
-                    }
-                }
-                return sum;
-            }
-            return 0;
+        return removedProducts;
+    }
+
+    public void printBasket() {
+        for (Product product : products) {
+            System.out.println(product);
         }
-        public void printBasket() {
-            if (products[0] == null) {
-                System.out.println("Корзина пуста");
-            }
-            for (Product variable : products) {
-                if (variable != null) {
-                    System.out.println(variable);
-                }
-            }
-            System.out.println("Цена корзины: " + priceBasket());
+    }
+
+    public double priceBasket() {
+        double total = 0;
+        for (Product product : products) {
+            total += product.getPrice();
         }
-        public void deleteProduct () {
-            for (int number = 0; number < products.length; number++) {
-                products[number] = null;
-            }
-            System.out.println("Корзина очищена");
-        }
+        return total;
+    }
 
     @Override
     public String toString() {
         return "ProductBasket{" +
-                "products=" + Arrays.toString(products) +
+                "products=" + products +
                 '}';
     }
 
@@ -65,12 +60,14 @@ public class ProductBasket {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductBasket basket = (ProductBasket) o;
-        return Objects.deepEquals(products, basket.products);
+        ProductBasket that = (ProductBasket) o;
+        return Objects.equals(products, that.products);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(products);
+        return Objects.hashCode(products);
     }
 }
+
+

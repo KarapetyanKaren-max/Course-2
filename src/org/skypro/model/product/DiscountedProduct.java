@@ -1,17 +1,15 @@
-package org.skypro.model;
-
-import org.skypro.servi.Product;
+package org.skypro.model.product;
 
 import java.util.Objects;
 
 public class DiscountedProduct extends Product {
-    private double basePrice; // Fixed typo in variable name
-    private int discount;
+    private final double basePrice;
+    private final int discount;
 
     public DiscountedProduct(int discount, String name, double basePrice) {
         super(name);
-        validateBasePrice(basePrice); // Validate base price
-        validateDiscount(discount); // Validate discount percentage
+        validateBasePrice(basePrice);
+        validateDiscount(discount);
         this.basePrice = basePrice;
         this.discount = discount;
     }

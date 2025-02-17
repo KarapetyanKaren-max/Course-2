@@ -1,15 +1,13 @@
-package org.skypro.model;
-
-import org.skypro.servi.Product;
+package org.skypro.model.product;
 
 import java.util.Objects;
 
 public class SimpleProduct extends Product {
-    private double price;
+    private final double price;
 
     public SimpleProduct(double price, String name) {
         super(name);
-        validatePrice(price); // Validate price in the constructor
+        validatePrice(price);
         this.price = price;
     }
 
@@ -27,7 +25,7 @@ public class SimpleProduct extends Product {
     @Override
     public String toString() {
         return "SimpleProduct{" +
-                "name='" + getName() + '\'' + // Include product name for clarity
+                "name='" + getName() + '\'' +
                 ", price=" + price +
                 '}';
     }

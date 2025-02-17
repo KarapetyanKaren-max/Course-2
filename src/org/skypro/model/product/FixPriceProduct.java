@@ -1,11 +1,9 @@
-package org.skypro.model;
-
-import org.skypro.servi.Product;
+package org.skypro.model.product;
 
 public class FixPriceProduct extends Product {
 
     private static final double DEFAULT_PRICE = 50.0;
-    private double price;
+    private final double price;
 
 
     public FixPriceProduct(String name) {
