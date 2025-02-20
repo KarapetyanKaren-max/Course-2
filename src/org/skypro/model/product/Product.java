@@ -4,6 +4,7 @@ import org.skypro.model.Searchable;
 
 import java.util.Objects;
 
+
 public abstract class Product implements Searchable {
 
     private String name;

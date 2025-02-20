@@ -12,6 +12,7 @@ public class DiscountedProduct extends Product {
         validateDiscount(discount);
         this.basePrice = basePrice;
         this.discount = discount;
+
     }
 
     private void validateBasePrice(double basePrice) {

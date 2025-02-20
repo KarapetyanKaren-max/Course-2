@@ -3,6 +3,7 @@ package org.skypro.servis;
 import org.skypro.exception.BestResultNotFound;
 import org.skypro.model.Searchable;
 
+
 import java.util.*;
 
 public class SearchEngine {
