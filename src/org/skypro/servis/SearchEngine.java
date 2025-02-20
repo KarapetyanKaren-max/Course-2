@@ -3,10 +3,7 @@ package org.skypro.servis;
 import org.skypro.exception.BestResultNotFound;
 import org.skypro.model.Searchable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
+import java.util.*;
 
 public class SearchEngine {
     private final List<Searchable> items;
@@ -27,23 +24,23 @@ public class SearchEngine {
         items.add(item);
     }
 
-    public List<Searchable> search(String searchTerm) {
-        List<Searchable> results = new ArrayList<>();
+    public Map<String, Searchable> search(String term) {
+        Map<String, Searchable> searchResults = new TreeMap<>();
         for (Searchable item : items) {
             if (item != null && item.getSearchTerm() != null &&
-                    item.getSearchTerm().toLowerCase().contains(searchTerm.toLowerCase())) {
-                results.add(item);
+                    item.getSearchTerm().toLowerCase().contains(term.toLowerCase())) {
+                searchResults.put(item.getSearchTerm(), item);
             }
         }
-        return results;
+        return searchResults;
     }
 
-    public static void printSearchResults(List<Searchable> results) {
+    public static void printSearchResults(Map<String, Searchable> results) {
         if (results.isEmpty()) {
             System.out.println("Ничего не найдено.");
         } else {
-            for (Searchable result : results) {
-                System.out.println(result.getSearchTerm());
+            for (Map.Entry<String, Searchable> entry : results.entrySet()) {
+                System.out.println("Продукт: " + entry.getKey() + ", Информация: " + entry.getValue());
             }
         }
     }

@@ -23,19 +23,10 @@ public class ProductBasket {
         products.computeIfAbsent(product.getName(), k -> new ArrayList<>()).add(product);
         System.out.println("Продукт в корзину добавлен");
     }
-
-    public List<Product> removeProductByName(String name) {
-        List<Product> removedProducts = new ArrayList<>();
-        List<Product> productList = products.get(name);
-
-        if (productList != null) {
-            removedProducts.addAll(productList);
-            productList.clear();
-            products.remove(name);
-        }
-
-        return removedProducts;
+    public List<Product> removeByName(String name) {
+        return products.remove(name);
     }
+
 
     public void printBasket() {
         for (Map.Entry<String, List<Product>> entry : products.entrySet()) {
