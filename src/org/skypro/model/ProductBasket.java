@@ -24,17 +24,8 @@ public class ProductBasket {
         System.out.println("Продукт в корзину добавлен");
     }
 
-    public List<Product> removeProductByName(String name) {
-        List<Product> removedProducts = new ArrayList<>();
-        List<Product> productList = products.get(name);
-
-        if (productList != null) {
-            removedProducts.addAll(productList);
-            productList.clear();
-            products.remove(name);
-        }
-
-        return removedProducts;
+    public List<Product> removeByName(String name) {
+        return products.remove(name);
     }
 
     public void printBasket() {

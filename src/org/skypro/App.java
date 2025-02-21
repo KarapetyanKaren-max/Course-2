@@ -27,7 +27,7 @@ public class App {
         basket.addProduct(new SimpleProduct(150, "Молоко"));
 
 
-        List<Product> removedProducts = basket.removeProductByName("Молоко");
+        List<Product> removedProducts = basket.removeByName("Молоко");
         System.out.println("Удаленные продукты:");
         for (Product product : removedProducts) {
             System.out.println(product);
@@ -36,8 +36,8 @@ public class App {
         System.out.println("Корзина после удаления:");
         basket.printBasket();
 
-        removedProducts = basket.removeProductByName("Неизвестный продукт");
-        if (removedProducts.isEmpty()) {
+        removedProducts = basket.removeByName("Неизвестный продукт");
+        if (removedProducts == null) {
             System.out.println("Список пуст");
         }
 
