@@ -12,6 +12,7 @@ import org.skypro.servis.SearchEngine;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
@@ -26,7 +27,7 @@ public class App {
         basket.addProduct(new SimpleProduct(150, "Молоко"));
 
 
-        List<Product> removedProducts = basket.removeProductByName("Молоко");
+        List<Product> removedProducts = basket.removeByName("Молоко");
         System.out.println("Удаленные продукты:");
         for (Product product : removedProducts) {
             System.out.println(product);
@@ -35,8 +36,8 @@ public class App {
         System.out.println("Корзина после удаления:");
         basket.printBasket();
 
-        removedProducts = basket.removeProductByName("Неизвестный продукт");
-        if (removedProducts.isEmpty()) {
+        removedProducts = basket.removeByName("Неизвестный продукт");
+        if (removedProducts == null) {
             System.out.println("Список пуст");
         }
 
@@ -44,7 +45,7 @@ public class App {
         basket.printBasket();
 
         String searchTerm = "Молоко";
-        List<Searchable> searchResults = searchEngine.search(searchTerm);
+        Map<String, Searchable> searchResults = searchEngine.search(searchTerm);
         System.out.println("Результаты поиска для: " + searchTerm);
         SearchEngine.printSearchResults(searchResults);
     }

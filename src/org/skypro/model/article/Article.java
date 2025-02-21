@@ -1,5 +1,6 @@
 package org.skypro.model.article;
 
+
 import org.skypro.model.Searchable;
 
 import java.util.Objects;

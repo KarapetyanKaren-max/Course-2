@@ -1,5 +1,6 @@
 package org.skypro.model.product;
 
+
 import java.util.Objects;
 
 public class SimpleProduct extends Product {
