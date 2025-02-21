@@ -9,10 +9,7 @@ import org.skypro.model.product.Product;
 import org.skypro.model.product.SimpleProduct;
 import org.skypro.servis.SearchEngine;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
@@ -45,7 +42,7 @@ public class App {
         basket.printBasket();
 
         String searchTerm = "Молоко";
-        Map<String, Searchable> searchResults = searchEngine.search(searchTerm);
+        Set<Searchable> searchResults = searchEngine.search(searchTerm);
         System.out.println("Результаты поиска для: " + searchTerm);
         SearchEngine.printSearchResults(searchResults);
     }
