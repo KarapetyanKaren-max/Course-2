@@ -29,23 +29,25 @@ public class ProductBasket {
     }
 
     public void printBasket() {
-        for (Map.Entry<String, List<Product>> entry : products.entrySet()) {
-            String productName = entry.getKey();
-            List<Product> productList = entry.getValue();
-            for (Product product : productList) {
-                System.out.println(productName + ": " + product);
-            }
-        }
+        products.forEach((productName, productList) ->
+                productList.forEach(product ->
+                        System.out.println(productName + ": " + product)
+                )
+        );
     }
 
     public double priceBasket() {
-        double total = 0;
-        for (List<Product> productList : products.values()) {
-            for (Product product : productList) {
-                total += product.getPrice();
-            }
-        }
-        return total;
+        return products.values().stream()
+                .flatMap(List::stream)
+                .mapToDouble(Product::getPrice)
+                .sum();
+    }
+
+    private long getSpecialCount() {
+        return products.values().stream()
+                .flatMap(List::stream)
+                .filter(Product::isSpecial)
+                .count();
     }
 
     @Override
@@ -68,5 +70,4 @@ public class ProductBasket {
         return Objects.hashCode(products);
     }
 }
-
 

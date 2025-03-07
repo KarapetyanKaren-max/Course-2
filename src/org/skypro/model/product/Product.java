@@ -56,4 +56,8 @@ public abstract class Product implements Searchable {
     public String getSearchTerm() {
         return name;
     }
+
+    public boolean isSpecial() {
+        return false;
+    }
 }

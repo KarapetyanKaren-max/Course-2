@@ -3,8 +3,9 @@ package org.skypro.servis;
 import org.skypro.exception.BestResultNotFound;
 import org.skypro.model.Searchable;
 
-
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class SearchEngine {
     private final List<Searchable> items;
@@ -26,14 +27,11 @@ public class SearchEngine {
     }
 
     public Map<String, Searchable> search(String term) {
-        Map<String, Searchable> searchResults = new TreeMap<>();
-        for (Searchable item : items) {
-            if (item != null && item.getSearchTerm() != null &&
-                    item.getSearchTerm().toLowerCase().contains(term.toLowerCase())) {
-                searchResults.put(item.getSearchTerm(), item);
-            }
-        }
-        return searchResults;
+        return items.stream()
+                .filter(item -> item != null && item.getSearchTerm() != null &&
+                        item.getSearchTerm().toLowerCase().contains(term.toLowerCase()))
+                .collect(Collectors.toMap(Searchable::getSearchTerm, item -> item, (existing, replacement) -> existing,
+                        () -> new TreeMap<>(String::compareTo)));
     }
 
     public static void printSearchResults(Map<String, Searchable> results) {
